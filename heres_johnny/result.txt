@@ -1,0 +1,5 @@
+Loaded 1 password hash (crypt, generic crypt(3) [?/64])
+No password hashes left to crack (see FAQ)
+root:hellokitty:0:0:root:/root:/bin/bash
+
+1 password hash cracked, 0 left
