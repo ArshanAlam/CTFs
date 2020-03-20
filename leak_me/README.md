@@ -7,7 +7,7 @@ This exploit takes advantage of the fact that `strcat()` removes the null termin
 
 
 ### The stack layout
-
+```
 |-------------------| <-- High Memory Address
 | password          |
 |-------------------|
@@ -15,3 +15,4 @@ This exploit takes advantage of the fact that `strcat()` removes the null termin
 |-------------------|
 | password_input    |
 |-------------------| <-- Low Memory Address
+```
