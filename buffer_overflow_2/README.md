@@ -2,7 +2,7 @@
 Alright, this time you'll need to control some arguments. Can you get the flag from this program?
 
 ## Solution
-This problem required a carefully crafted input what set the return pointer to the `win()` function and also set the the arguments to be `arg1 = 0xDEADBEEF` and `arg2 = 0xDEADC0DE`, respectfully.
+This problem required a carefully crafted input that set the return address to the `win()` function and also set the arguments to be `arg1 = 0xDEADBEEF` and `arg2 = 0xDEADC0DE`, respectfully.
 
 ### Exploit
 ```
