@@ -6,8 +6,8 @@ In a filesystem, everything is relative ¯\_(ツ)_/¯. Can you find a way to get
 SSH onto the server and create a symbolic link, of the executable, in your home directory.
 
 ```
-cd ~
-ln -s /problems/absolutely-relative_4_bef88c36784b44d2585bb4d2dbe074bd/absolutely-relative absolutely-relative
+$ cd ~
+$ ln -s /problems/absolutely-relative_4_bef88c36784b44d2585bb4d2dbe074bd/absolutely-relative absolutely-relative
 ```
 
 Create a `permission.txt` file in your home directory that the program could read.
