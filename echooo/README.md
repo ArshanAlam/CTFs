@@ -1,10 +1,10 @@
 # Echooo
 
-This program prints any input you give it. Can you leak the flag? Connect with nc 2018shell.picoctf.com 46960.
+This program prints any input you give it. Can you leak the flag? Connect with `nc 2018shell.picoctf.com 46960`.
 
 
 ## Solution
-It took me a while to come up with this solution because I was also learning about format string vulnerabilities. I started by using [radare2](https://github.com/radareorg/radare2) in debug mode. I set a breakpoint after the user input and than I checked state of the stack. It took a bit of trial and error, but eventually I discovered that the flag was stored `27 words (32-bit words)` away. This Medium blog post, [Binary Exploitation: Format String Vulnerabilities](https://medium.com/swlh/binary-exploitation-format-string-vulnerabilities-70edd501c5be) helped me discover that I could get the " ith argument on the stack by using a special case format specifier".
+It took me a while to come up with this solution because I was also learning about format string vulnerabilities. I started by using [radare2](https://github.com/radareorg/radare2) in debug mode. I set a breakpoint after the user input and than I printed the stack. It took a bit of trial and error, but eventually I discovered that the flag was stored `27 words (32-bit words)` away. This Medium blog post, [Binary Exploitation: Format String Vulnerabilities](https://medium.com/swlh/binary-exploitation-format-string-vulnerabilities-70edd501c5be) helped me discover that I could get the **ith argument on the stack by using a special case format specifier**.
 
 
 ```
@@ -27,7 +27,7 @@ python -c 'print(" ".join(["%"+str(i)+"$08x" for i in range(27, 27+16)]))' > inp
 %41$08x %42$08x
 ```
 
-I piping this input into netcat results in:
+Piping this input into netcat results in:
 
 ```
 $ cat input.txt | nc -w1 2018shell.picoctf.com 46960                                                                
