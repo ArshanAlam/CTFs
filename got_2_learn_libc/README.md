@@ -60,3 +60,21 @@ Using the `puts` function pointer and the useful_string address from running `./
 
 In the diagram, we have effectively created a [call stack](https://en.wikipedia.org/wiki/Call_stack) for the libc `system` function.
 
+
+#### Why use `mkfifo`
+Since the `./vuln` binary is using [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization), and we need to compute the address for the libc `system` function, we need a way to send bytes to the `stdin` of `./vuln` from `./generate_shellcode.py`.
+
+We do this by using [named pipes](https://en.wikipedia.org/wiki/Named_pipe).
+
+We `cat` the data from a named pipe called `named_pipe`  into `./vuln`. That way the input for `./vuln` is whatever that is written to `named_pipe`. To write bytes to `named_pipe`, we write to the file in `./generate_shellcode.py`.
+
+
+## Exploit
+To execute this exploit we will need three terminal windows:
+
+1. terminal window 1 will execute `./exploit_run_vuln.sh`. This will create the named pipe called `named_pipe`.
+2. terminal window 2 will run `cat > named_pipe`. This will keep the stdin open for `./vuln` (which is being execute in `exploit_run_vuln.sh`) *note: This terminal will be used to send commands to the shell once we get ourself a shell*
+3. terminal window 3 will execute `./generate_shellcode.py` to generate the shellcode and write it to `named_pipe`
+
+
+
