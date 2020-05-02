@@ -38,7 +38,7 @@ Now we could mount the file system image:
 $ fuse2fs ext-super-magic.img mount/
 ```
 
-The flag is in an image within the mounted directory [mount/flag.jpg](flag.jpg).
+The flag is in an image within the mounted directory [mount/flag.jpg](flag.jpg)
 
 ### Flag
 ```
