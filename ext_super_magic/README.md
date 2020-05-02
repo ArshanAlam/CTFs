@@ -2,7 +2,7 @@
 We salvaged a ruined Ext SuperMagic II-class mech recently and pulled the [filesystem](ext-super-magic.img) out of the black box. It looks a bit corrupted, but maybe there's something interesting in there. You can also find it in /problems/ext-super-magic_4_f196e59a80c3fdac37cc2f331692ef13 on the shell server.
 
 ## Solution
-The biggest hint for this problem was in its description. We are dealing with an `**Ext** SuperMagic **II**-class ...`. This immediately made me realize that we are dealing with an [ext2 file system](https://en.wikipedia.org/wiki/Ext2).
+The biggest hint for this problem was in its description. We are dealing with an `Ext SuperMagic II-class ...`. This immediately made me realize that we are dealing with an [ext2 file system](https://en.wikipedia.org/wiki/Ext2).
 
 ### Exploit
 I ran `fsck` on the provided image.
@@ -38,7 +38,7 @@ Now we could mount the file system image:
 $ fuse2fs ext-super-magic.img mount/
 ```
 
-The flag is in an image within the mounted directory `mount/flag.jpg`.
+The flag is in an image within the mounted directory [mount/flag.jpg](flag.jpg).
 
 ### Flag
 ```
