@@ -50,7 +50,7 @@ log_ID      time  num_IPs
 
 ```
 
-My answer as `3 5 6 12`.
+My answer was `3 5 6 12`.
 
 ```
 3 5 6 12
