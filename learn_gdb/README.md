@@ -3,26 +3,10 @@
 Using a debugging tool will be extremely useful on your missions. Can you run this [program](run) in [gdb](https://en.wikipedia.org/wiki/GNU_Debugger) and find the flag? You can find the file in /problems/learn-gdb_2_32e08c18932eb88649e9b97f3020b9f5 on the shell server.
 
 ## Solution
-The flag is written to a global variable called `flag_buf`. All we have to do is find a place to set a breakpoint after the flag is written to the buffer and than use `printf` to print the string in that buffer.
+The flag is written to a global variable called `flag_buf`. All we have to do is find a place to set a breakpoint after the flag is written to the buffer and then use `printf` to print the string in that buffer.
 
 ```
 $ gdb run
-GNU gdb (Debian 7.12-6) 7.12.0.20161007-git                                                                                                                 
-Copyright (C) 2016 Free Software Foundation, Inc.                                                                                                           
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>                                                                               
-This is free software: you are free to change and redistribute it.                                                                                          
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"                                                                                  
-and "show warranty" for details.                                                                                                                            
-This GDB was configured as "x86_64-linux-gnu".                                                                                                              
-Type "show configuration" for configuration details.                                                                                                        
-For bug reporting instructions, please see:                                                                                                                 
-<http://www.gnu.org/software/gdb/bugs/>.                                                                                                                    
-Find the GDB manual and other documentation resources online at:                                                                                            
-  1 # Learn gdb
-<http://www.gnu.org/software/gdb/documentation/>.                                                                                                           
-For help, type "help".                                                                                                                                      
-Type "apropos word" to search for commands related to "word"...                                                                                             
-Reading symbols from run...(no debugging symbols found)...done.                                                                                             
 (gdb) disassemble main
 Dump of assembler code for function main:                                                                                                                   
    0x00000000004008c9 <+0>:     push   %rbp                                                                                                                 
@@ -46,7 +30,6 @@ Dump of assembler code for function main:
    0x0000000000400919 <+80>:    leaveq                                                                                                                      
    0x000000000040091a <+81>:    retq   
 End of assembler dump.
-
 ```
 
 We see that the next instruction, after `decrypt_flag`, is at `*main + 65`. So this is a good place to put a breakpoint and print the buffer.
