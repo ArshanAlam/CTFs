@@ -2,7 +2,7 @@
 As the [song](https://www.youtube.com/watch?v=CTt1vk9nM9c) draws closer to the end, another executable [be-quick-or-be-dead-3](be-quick-or-be-dead-3) suddenly pops up. This one requires even faster machines. Can you run it fast enough too? You can also find the executable in /problems/be-quick-or-be-dead-3_4_081de19947195d5a491290bc42530db6.
 
 ## Solution
-The solution to this problem is very similar to the other `be_quick_or_be_dead_*` in the serie. This time the key was some weird function. Using [radare2](https://en.wikipedia.org/wiki/Radare2) I reverse engineered the binary and converted the assembly code to pseudocode.
+The solution to this problem is very similar to the other `be_quick_or_be_dead_*` in the series. This time the key was some weird function. Using [radare2](https://en.wikipedia.org/wiki/Radare2) I reverse engineered the binary and converted the assembly code to pseudocode.
 
 ```
  $ r2 be-quick-or-be-dead-3
@@ -130,7 +130,7 @@ int calc(int x) {
 ```
 
 ## Exploit
-The exploit is to patch the binary in such a way that it does not execute the `sym.calc` function. Rather it returns the final value. Using Radare2 we get:
+The exploit is to patch the binary in such a way that it does not execute the `sym.calc()` function. Rather it returns the final value. Using Radare2 we get:
 
 ```
 # Get the key
@@ -138,8 +138,8 @@ $ ./calc_key
 2f8cdc3f
 
 # Start radare2 in debug mode and navigate to the sym.calculate_key function.
-# Note: I know that the key function is being called in `calculate_key()` because
-# the layout of this binary is similar to previous problems in this serie.
+# Note: I know that the key function is being called in sym.calculate_key() because
+# the layout of this binary is similar to previous problems in this series.
 
 $ r2 -d be-quick-or-be-dead-3                                                                      
 [0x7e84ece0bc20]> aaa
@@ -155,7 +155,7 @@ $ r2 -d be-quick-or-be-dead-3
 └           0x004007a1      c3             ret
 ```
 
-Now we set the position of radare2 at `0x0040079b`, the address where the `calc()` function is being called. Then we ask radare2 what the bytes should be for the operation `mov eax, 0x2f8cdc3f`. We get `wx b83fdc8c2f`. Thus we enter `wx b83fdc8c2f` to override the call to `calc()` and tell radare2 to execute the binary using `dc`.
+Now we set the position of radare2 at `0x0040079b`, the address where the `sym.calc()` function is being called. Then we ask radare2 what the bytes should be for the operation `mov eax, 0x2f8cdc3f`. We get `wx b83fdc8c2f`. Thus we enter `wx b83fdc8c2f` to override the call to `sym.calc()` and tell radare2 to execute the binary using `dc`.
 
 ```
 [0x00400792]> s 0x0040079b
