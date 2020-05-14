@@ -2,7 +2,7 @@
 As the [song](https://www.youtube.com/watch?v=CTt1vk9nM9c) draws closer to the end, another executable [be-quick-or-be-dead-3](be-quick-or-be-dead-3) suddenly pops up. This one requires even faster machines. Can you run it fast enough too? You can also find the executable in /problems/be-quick-or-be-dead-3_4_081de19947195d5a491290bc42530db6.
 
 ## Solution
-The solution to this problem is very similar to the other `be_quick_or_be_dead_*` in the series. This time the key was some weird function. Using [radare2](https://en.wikipedia.org/wiki/Radare2) I reverse engineered the binary and converted the assembly code to pseudocode.
+The solution to this problem is very similar to the other `be_quick_or_be_dead_*` in the serie. This time the key was some weird function. Using [radare2](https://en.wikipedia.org/wiki/Radare2) I reverse engineered the binary and converted the assembly code to pseudocode.
 
 ```
  $ r2 be-quick-or-be-dead-3
@@ -68,7 +68,7 @@ The solution to this problem is very similar to the other `be_quick_or_be_dead_*
 ```
 
 ### Pseudocode
-Below is the translation of the assembly code above. **Notice** how there is repeated calculations of sub-problems. This function is a good candidate for (dynamic programming)[https://en.wikipedia.org/wiki/Dynamic_programming].
+Below is the translation of the assembly code above. **Notice** how there is repeated calculations of sub-problems. This function is a good candidate for [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).
 
 ```
 def calc(x):
