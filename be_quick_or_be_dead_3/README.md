@@ -155,7 +155,7 @@ $ r2 -d be-quick-or-be-dead-3
 └           0x004007a1      c3             ret
 ```
 
-Now we set the position of radare2 at `0x0040079b`, the address where the `sym.calc()` function is being called. Then we ask radare2 what the bytes should be for the operation `mov eax, 0x2f8cdc3f`. We get `wx b83fdc8c2f`. Thus we enter `wx b83fdc8c2f` to override the call to `sym.calc()` and tell radare2 to execute the binary using `dc`.
+Now we tell radare2 to go to `0x0040079b`, the address where the `sym.calc()` function is being called. Then we ask radare2 what command to execute to get operation `mov eax, 0x2f8cdc3f`. Radare2 returns `wx b83fdc8c2f`. Thus we enter `wx b83fdc8c2f` to override the call to `sym.calc()` and tell radare2 to execute the binary using `dc`.
 
 ```
 [0x00400792]> s 0x0040079b
