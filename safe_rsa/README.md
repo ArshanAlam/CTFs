@@ -3,7 +3,7 @@ Now that you know about RSA can you help us decrypt this [ciphertext](ciphertext
 
 
 ## Solution
-Looking at the given ciphertext we immediately notice that `e` is small. We know that `c = (m**e) % n`. This means that `m**e = (c + k*n)` for some value `k`. After some experimentation I discovered that `k = 0`. Thus the problem reduces down to solving `c**(1/e)`. However, using Python to solve for `m = c ** (1/e)` was not good enough because we lose precision. Thus, I wrote a function that calculates the *Nth* root using [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm).
+Looking at the given ciphertext we immediately notice that `e` is small. We know that `c ≡ m**e (mod n)`. This means that `m**e = c + k*n` for some value `k`. After some experimentation I discovered that `k = 0`. Thus the problem reduces down to solving `m = c**(1/e)`. However, using Python to solve for `m = c ** (1/e)` was not good enough because we lose precision. Thus, I wrote a function that calculates the *Nth* root using [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm).
 
 
 ```
