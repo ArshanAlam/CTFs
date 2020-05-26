@@ -22,7 +22,7 @@ p = 141777522766828535658576720964858998037
 q = 93323343625177578611970641071834603237643
 ```
 
-How that we have the prime factors, we could determine the [private key](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Key_generation) using the [Extended Euclidean algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm).
+Now that we have the prime factors, we could determine the [private key](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Key_generation) using the [Extended Euclidean algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm).
 
 ### Exploit
 The full exploit becomes:
