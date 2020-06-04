@@ -3,7 +3,7 @@ This [program](print_flag) was about to print the flag when it died. Maybe the f
 
 
 ## Solution
-This problem took me some time to figure out. With the given files I knew we were dealing with a [Core Dump](https://en.wikipedia.org/wiki/Core_dump), however I did not know how to debug it. Eventually I found this helpful StacksOverflow [post](https://stackoverflow.com/questions/8305866/how-do-i-analyze-a-programs-core-dump-file-with-gdb-when-it-has-command-line-pa). This problem was a great opportunity for me to learn more about [gdb](https://en.wikipedia.org/wiki/GNU_Debugger).
+This problem took me some time to figure out. With the given files I knew we were dealing with a [Core Dump](https://en.wikipedia.org/wiki/Core_dump), however I did not know how to debug it. Eventually I found this helpful [StacksOverflow post](https://stackoverflow.com/questions/8305866/how-do-i-analyze-a-programs-core-dump-file-with-gdb-when-it-has-command-line-pa). This problem was a great opportunity for me to learn more about [gdb](https://en.wikipedia.org/wiki/GNU_Debugger).
 
 
 Just by starting gdb we get a very big hint:
@@ -27,7 +27,7 @@ Line 90 of "./print_flag.c" starts at address 0x80487c1 <print_flag> and ends at
 When we disassemble the code at address `0x80487c1` we see:
 
 ```
-(gdb) disassemble
+(gdb) disassemble 0x80487c1
 Dump of assembler code for function print_flag:
 => 0x080487c1 <+0>:     push   ebp
    0x080487c2 <+1>:     mov    ebp,esp
@@ -46,7 +46,7 @@ Dump of assembler code for function print_flag:
 End of assembler dump.
 ```
 
-It took me some time to figure out what was happening here but I eventually figured it out. This `print_flag()` function is printing a formatted string. The `format` is at address `0x804894c`. We could use the `x/s` command to print the format string:
+It took me some time to figure out what was happening here but I eventually figured it out. This `print_flag()` function is [printing a formatted string](https://www.cplusplus.com/reference/cstdio/printf/). The `format` is at address `0x804894c`. We could use the `x/s` command to print the format string:
 
 ```
 (gdb) x/s 0x804894c
@@ -56,7 +56,7 @@ It took me some time to figure out what was happening here but I eventually figu
 Thus the flag is whatever string that is being pointed at by the pointer in register `eax`. Reading the logic of this function we see that the pointer in `eax` is whatever value that is in `0x539*4 + 0x804a080`. Using the `x` command we could get this value:
 
 ```
-(gdb) x 0x539*4 +0x804a080
+(gdb) x 0x539*4 + 0x804a080
 0x804b564 <strs+5348>:  0x080610f0
 ```
 
