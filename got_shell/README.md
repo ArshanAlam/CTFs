@@ -40,7 +40,7 @@ Relocation section '.rel.dyn' at offset 0x34c contains 2 entries:
 The blockquote, above, comes from [this](https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html) very helpful article about `PLT` and `GOT`.
 
 
-Looking at the source code, we see that we call `puts()` after assigning `value` to the location pointed by `address`:
+Looking at the source code, we see that we call `puts()` before and after assigning the `value` to the location pointed by `address`:
 
 ```
 sprintf(buf, "Okay, writing 0x%x to 0x%x", value, address);
@@ -74,7 +74,7 @@ $ r2 -d auth
 [0xf5ac3a20]> Q
 ```
 
-We could set a breakpoint at `puts()` in radare2 and `step` (using `ds`) forward until we find ourself in the `GOT`.
+We could set a breakpoint at `puts()` in radare2 and `step` (using `ds`) forward until we find ourself at an address in the `GOT`.
 
 
 ```
@@ -120,7 +120,7 @@ Okay, now what value would you like to write to 0x0
 hit breakpoint at: 804863c
 ```
 
-Once we hit the breakpoint we have to step forward until we arrive at an address that doesn't look something in the `auth.c` code.
+Once we hit the breakpoint we have to step forward until we arrive at an address that doesn't look like something in the `auth.c` code.
 
 ```
 [0x0804863c]> ds
@@ -143,7 +143,7 @@ Notice that the value at `obj._GLOBAL_OFFSET_TABLE + 0xc` is the same as the loc
 0x0804a02c  0000 0000 60fd 09f7 0000 0000 0000 0000  ....`...........
 ```
 
-Now all that's left is the figure out what value to put there. But that's easy! Using Radare2 we could quickly find out the address of the `win()` function.
+Now all that's left to do is to the figure out what value to put there. But that's easy! Using Radare2 we could quickly find out the address of the `win()` function.
 
 
 ```
@@ -175,7 +175,7 @@ $ r2 -d auth
 Thus the `value = 0x0804854b`!
 
 ### Exploit
-Using everything we learned from the [Solution](##Solution) section, above, we could put those the `address` and the `value` into a file called `exploit.in` and pipe that into the service.
+Using everything we learned from the [Solution](#Solution) section, above, we could put the `address` and the `value` into a file called `exploit.in` and pipe that into the service.
 
 ```
 $ cat exploit.in 
