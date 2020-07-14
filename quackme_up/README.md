@@ -4,7 +4,7 @@ The duck puns continue. Can you crack, I mean quack this [program](main) as well
 
 ## Solution
 
-Notice that sending the program the same character as input returns the same ciphertext in the output:
+Notice that sending the program the same character, as input, results in the same ciphertext character in the output:
 
 ```
 $ ./main 
@@ -31,13 +31,13 @@ Now quack it! : 11 80 20 E0 22 53 72 A1 01 41 55 20 A0 C0 25 E3 20 30 00 45 05 3
 That's all folks.
 ```
 
-Using the encrypted text and the printable ascii characters,we could construct a map:
+Using the encrypted text and the printable ascii characters, we could construct a map:
 ```
 ciphertext_character -> ascii_character
 ```
 
 ### Exploit
-I took the output from the program above, added it to files [printable_ascii_ciphertext.txt](printable_ascii_ciphertext.txt) and [flag_ciphertext.txt](flag_ciphertext.txt) and then wrote a Python program [crack.py](crack.py) to create the `ciphertext_character -> ascii_character` map and use that map to crack the flag ciphertext.
+I took the output from the program above, added it to files [printable_ascii_ciphertext.txt](printable_ascii_ciphertext.txt) and [flag_ciphertext.txt](flag_ciphertext.txt) and then wrote a Python program [crack.py](crack.py) to create the `ciphertext_character -> ascii_character` map and used that map to crack the flag.
 
 ```
 $ python crack.py 
