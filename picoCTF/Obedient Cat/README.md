@@ -3,6 +3,10 @@
 This file has a [flag](flag.txt) in plain sight (aka "in-the-clear").
 
 
+## Hints
+1. `man cat`
+
+
 ## Solution
 Execute the `cat` command to print the flag.
 

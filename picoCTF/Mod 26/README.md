@@ -2,12 +2,17 @@
 
 Cryptography can be easy, do you know what ROT13 is? `cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_jdJBFOXJ}`
 
-# Solution
+
+## Hints
+1. This can be solved online if you don't want to do it by hand!
+
+
+## Solution
 
 The flag, given in the problem description, is encrypted using [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). To solve this problem, I wrote a simple Python program that executes `26` shifts of the given input and prints the result. Next, we `grep` for any line that contains `picoCTF`.
 
 ```
-$ echo "cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_jdJBFOXJ}" | python solve_caesar_cipher.py | grep 'picoCTF'
+echo "cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_jdJBFOXJ}" | python solve_caesar_cipher.py | grep 'picoCTF'
 ```
 
 <details>
