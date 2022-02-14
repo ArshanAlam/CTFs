@@ -14,3 +14,9 @@ The given Python script encrypts and decrypts the content of a file using a user
 ```
 cat pw.txt | python ende.py -d flag.txt.en | grep -o 'picoCTF{.*}'
 ```
+
+
+#### Flag
+```
+picoCTF{4p0110_1n_7h3_h0us3_192ee2db}
+```
