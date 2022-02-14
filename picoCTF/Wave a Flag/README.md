@@ -11,7 +11,7 @@ Can you invoke help flags for a tool or binary? [This program](warm) has extraor
 
 
 ### Solution
-The flag is in the help section of the program. By executing the binary with the `-h` flag we could get the flag.
+The flag is in the help section of the program. By executing the binary with the `-h` argument we could get the flag.
 
 ```
 chmod 500 warm
