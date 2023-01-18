@@ -11,7 +11,7 @@ There is a nice program that you can talk to by using this command in a shell: `
 
 ### Solution
 
-After executing `nc mercury.picoctf.net 7449` I noticed that netcat output was a list of numbers that are within the ASCII range.
+After executing `nc mercury.picoctf.net 7449` I noticed that the output was a list of numbers that are within the ASCII range.
 
 ```shell
 $ nc mercury.picoctf.net 7449
@@ -62,7 +62,7 @@ $ nc mercury.picoctf.net 7449
 ![ASCII Table](ASCII-Table.svg)
 
 
-Thus, I wrote a simple python utility that reads all the numbers from `stdin` into an array then converts that numbers into ASCII characters.
+Thus, I wrote a simple python utility that reads all the numbers from `stdin` into an array then converts each number into an ASCII character.
 
 ```python
 # nums_to_ascii.py
