@@ -56,7 +56,8 @@ printf          # Line 93
 ----------
 ```
 
-Thus, when we pass `%x` as the `API token` then we back data on the stack.
+Thus, when we pass `%x` as the `API token` then we get back data on the stack.
+
 
 ```shell
 $ nc mercury.picoctf.net 27912
