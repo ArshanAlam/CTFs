@@ -108,7 +108,7 @@ def check_key(key, username_trial):
         return True
 ```
 
-Examining the code above, we discover that to crack the key we'll have to solve for `key_part_dynamic1_trail`. Reviewing the code, we see that the `key_part_dynamic1_trail` is calculated by taking the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) hash of the `username_trial → b"SCHOFIELD"`. Thus, we could write a [Keygen](https://en.wikipedia.org/wiki/Keygen) to generate the key and thereby the flag.
+Examining the code above, we discover that to crack the key we'll have to solve for `key_part_dynamic1_trial`. Reviewing the code, we see that the `key_part_dynamic1_trial` is calculated by taking the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) hash of the `username_trial → b"SCHOFIELD"`. Thus, we could write a [Keygen](https://en.wikipedia.org/wiki/Keygen) to generate the key and thereby the flag.
 
 ```python
 import hashlib
