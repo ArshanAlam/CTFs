@@ -27,7 +27,7 @@ Next I learned that in Python, `__globals__` is an attribute of a function that 
 
 > The `__import__` function is a python built-in function that provides a mechanism for dynamically importing modules.
 
-The called `listdir()` to get a list of all the files on the server:
+I called `listdir()` to get a list of all the files on the server:
 
 ```html
 </h1><pre>{{self.__init__.__globals__.__builtins__.__import__('os').listdir()}}</pre><h1>
