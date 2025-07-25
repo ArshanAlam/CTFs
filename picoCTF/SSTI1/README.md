@@ -23,11 +23,11 @@ thus the user provided input field is where I should focus my efforts.
 At this time, I did not know anything about [Server Side Template Injections](https://en.wikipedia.org/wiki/Code_injection#Server_Side_Template_Injection), however by putting `{{self}}` in the forms input field and getting `<TemplateReference None>` as the output made me realize that the backend is in `Python`.
 
 
-Next I learned that in Python, `__globals__` is an attribute of a function that provides a dictionary of all the variabes accessible from that functions scope. Considering that I know `self` exists, and each python class has the `__init__` constructor function, I tried `{{self.__init__.__globals__}}`. This resulted in a large list of functions and variables that I could call and access. Very quickly I saw `__import__` in the output.
+Next I learned that in Python, `__globals__` is an attribute of a function that provides a dictionary of all the variables accessible from that functions scope. Considering that I know `self` exists, and each python class has the `__init__` constructor function, I tried `{{self.__init__.__globals__}}`. This resulted in a large list of functions and variables that I could call and access. Very quickly I saw `__import__` in the output.
 
 > The `__import__` function is a python built-in function that provides a mechanism for dynamically importing modules.
 
-The first command I executed was `ls` to get a list of all the files on the server:
+The called `listdir()` to get a list of all the files on the server:
 
 ```html
 </h1><pre>{{self.__init__.__globals__.__builtins__.__import__('os').listdir()}}</pre><h1>
