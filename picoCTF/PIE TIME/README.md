@@ -11,7 +11,7 @@ Looking at the source code [vuln.c](./vuln.c), we see that that the `win()` func
 
 Thus, to solve this problem, we'll use two terminals and `gdb`.
 
-In terminal 01 execute the binary:
+In terminal 01, execute the binary:
 
 ```shell
 ./vuln
@@ -22,7 +22,7 @@ Address of main: 0x5d9a19d6f33d
 Enter the address to jump to, ex => 0x12345:
 ```
 
-In terminal 02 we use `gdb` to find the offset of the `win()` function and `main()` then we add this offset to the Address of main `0x5d9a19d6f33d`.
+In terminal 02, we use `gdb` to find the offset of the `win()` function and `main()` then subtract this offset from the address of main `0x5d9a19d6f33d`.
 
 ```shell
 gdb --quiet -ex "print/x 0x62ce98cd633d - (main-win)" -ex "quit" ./vuln
@@ -31,7 +31,7 @@ gdb --quiet -ex "print/x 0x62ce98cd633d - (main-win)" -ex "quit" ./vuln
 $1 = 0x62ce98cd62a7
 ```
 
-We subtract the delta `(main - win)` from the address because the stack grows downwards in `x86` and `x86-64` architectures.
+We subtract the offset amount `(main - win)` from the address because the stack grows downwards in `x86` and `x86-64` architectures.
 
 Using the address `0x62ce98cd62a7` that we get from `gdb` we could provide it as input to the program running in terminal 01 and get the flag.
 
